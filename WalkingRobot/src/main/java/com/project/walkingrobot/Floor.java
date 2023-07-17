@@ -3,7 +3,7 @@ package com.project.walkingrobot;
 import java.util.Arrays;
 
 public class Floor {
-    private int[][] floorArray;
+    private final int[][] floorArray;
 
     public Floor(int size) {
         floorArray = new int[size][size];
@@ -18,7 +18,7 @@ public class Floor {
         }
     }
 
-    private boolean isValidPosition(int x, int y) {
+    public boolean isValidPosition(int x, int y) {
         return x >= 0 && x < floorArray[0].length && y >= 0 && y < floorArray.length;
     }
 
@@ -27,5 +27,13 @@ public class Floor {
             return floorArray[y][x];
         }
         return -1;
+    }
+
+    public int[][] getFloorArray() {
+        return floorArray;
+    }
+
+    public int getFloorSize() {
+        return floorArray.length;
     }
 }
