@@ -1,7 +1,8 @@
-# COEN6761 ManhattanProject
+# COEN6761 SUMMER PROJECT
 Summer 2023 Testing and validation Project
 ### System Prerequisite
 
+#### To Run Application
 To get started with running the project
 
 1. Check the build and dependency status
@@ -16,6 +17,11 @@ To get started with running the project
 6. Go to File -> Project Structure -> Modules -> dependencies and all the externally downloaded jar.
 7. Follow Step 1 again. If dependency issue exists use step 2 to download and add externally.
 8. Use the IDE to run.
+
+#### To Test Application
+
+1. Edit the JUnit run-configuration in IDE to point to all or any of the test cases.
+2. Run the @Test individually by clicking run on the left side of each method.
 
 #### UNIVERSITY
 ```shell
