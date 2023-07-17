@@ -373,4 +373,26 @@ public class RobotTest {
         Assertions.assertEquals(expectedOutput, actualOutput);
     }
 
+    @Test
+    public void testInitialPosition() {
+        Assertions.assertEquals(0, robot.getX());
+        Assertions.assertEquals(0, robot.getY());
+        Assertions.assertEquals(Direction.NORTH, robot.getDirection());
+        Assertions.assertFalse(robot.isPenDown());
+        Assertions.assertEquals(1, robot.getTracedPathPositions().size());
+        Assertions.assertArrayEquals(new int[]{0, 0}, robot.getTracedPathPositions().get(0));
+    }
 
+    @Test
+    public void testTerminationWithCommandQ() {
+        // Arrange
+        Main main = new Main();
+
+        // Simulate user input "Q" by calling the executeCommand method with "Q"
+        boolean terminateProgram = main.executeCommand("Q", true);
+
+        // Assert
+        Assertions.assertTrue(terminateProgram);
+    }
+
+}
