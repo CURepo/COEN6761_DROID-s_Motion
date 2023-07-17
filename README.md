@@ -24,6 +24,4 @@ To get started with running the project
 2. Run the @Test individually by clicking run on the left side of each method.
 
 #### UNIVERSITY
-```shell
-    [CONCORDIA UNIVERSITY](https://www.concordia.ca/).
-   ```
+[CONCORDIA UNIVERSITY](https://www.concordia.ca/).
