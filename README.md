@@ -23,5 +23,11 @@ To get started with running the project
 1. Edit the JUnit run-configuration in IDE to point to all or any of the test cases.
 2. Run the @Test individually by clicking run on the left side of each method.
 
+#### To run Coverage using JaCoCo
+1. In order to generate test cases and the jacoco report run the shell command given below in the project's directory where Pom.xml is present.
+    ```shell
+    mvn clean install
+   ```  
+
 #### UNIVERSITY
 [CONCORDIA UNIVERSITY](https://www.concordia.ca/).
