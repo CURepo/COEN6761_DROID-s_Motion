@@ -20,9 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends Application {
+
     private Robot robot;
     private Floor floor;
-
     private Label positionLabel;
     private GridPane floorGrid;
     private TextField commandTextField;
@@ -56,6 +56,7 @@ public class Main extends Application {
         positionLabel = new Label("Position: -\nPen: -\nFacing: -");
 
         floorGrid = new GridPane();
+        floorGrid.setId("floorGrid");
         floorGrid.setAlignment(Pos.CENTER);
         floorGrid.setHgap(2);
         floorGrid.setVgap(2);
@@ -70,7 +71,6 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
 
     public void initializeFloorGrid(int size) {
         floorGrid.getChildren().clear();
@@ -132,24 +132,28 @@ public class Main extends Application {
             } else if (cmd.equalsIgnoreCase("U")) {
                 if (robot != null) {
                     robot.setPenDown(false);
+                    updatePositionLabel();
                 } else {
                     System.out.println("Please initialize the system first!");
                 }
             } else if (cmd.equalsIgnoreCase("D")) {
                 if (robot != null) {
                     robot.setPenDown(true);
+                    updatePositionLabel();
                 } else {
                     System.out.println("Please initialize the system first!");
                 }
             } else if (cmd.equalsIgnoreCase("R")) {
                 if (robot != null) {
                     robot.turnRight();
+                    updatePositionLabel();
                 } else {
                     System.out.println("Please initialize the system first!");
                 }
             } else if (cmd.equalsIgnoreCase("L")) {
                 if (robot != null) {
                     robot.turnLeft();
+                    updatePositionLabel();
                 } else {
                     System.out.println("Please initialize the system first!");
                 }
@@ -161,11 +165,11 @@ public class Main extends Application {
                     updateFloorGrid();
                     updatePositionLabel();
 
-                    System.out.println("Traced Path Positions for Command M: ");
+                    //System.out.println("Traced Path Positions for Command M: ");
                     System.out.println("Size of Traced Path Positions: " + tracedPathPositions.size());
-                    for (int[] position : tracedPathPositions) {
+                    /*for (int[] position : tracedPathPositions) {
                         System.out.println(position[0] + ", " + position[1]);
-                    }
+                    }*/
                 } else {
                     System.out.println("Please initialize the system first!");
                 }
@@ -174,10 +178,10 @@ public class Main extends Application {
                     displayTracedPath = true;
                     fillTracedPath();
 
-                    System.out.println("Traced Path Positions for command P: ");
+                    /*System.out.println("Traced Path Positions for command P: ");
                     for (int[] position : tracedPathPositions) {
                         System.out.println(position[0] + ", " + position[1]);
-                    }
+                    }*/
                 } else {
                     System.out.println("Please initialize the system first!");
                 }
@@ -192,7 +196,6 @@ public class Main extends Application {
         });
         return false;
     }
-
 
     private void updateFloorGrid() {
         if (floorGrid != null) {
@@ -241,19 +244,15 @@ public class Main extends Application {
                 floorGrid.add(rectangle, col, row);
 
                 // Print traced path positions for debugging
-                System.out.println("Traced Path Position: " + col + ", " + row);
+                //System.out.println("Traced Path Position: " + col + ", " + row);
             }
             resetTracedPath();
         }
     }
 
-
-
-
     private void resetTracedPath() {
         tracedPathPositions.clear();
     }
-
 
     private void updatePositionLabel() {
         String penStatus = robot.isPenDown() ? "down" : "up";
@@ -262,5 +261,44 @@ public class Main extends Application {
         positionLabel.setText(positionText);
     }
 
+    public Robot getRobot() {
+        return robot;
+    }
+
+    public void setRobot(Robot robot) {
+        this.robot = robot;
+    }
+
+    public Floor getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Floor floor) {
+        this.floor = floor;
+    }
+
+    public Label getPositionLabel() {
+        return positionLabel;
+    }
+
+    public void setPositionLabel(Label positionLabel) {
+        this.positionLabel = positionLabel;
+    }
+
+    public GridPane getFloorGrid() {
+        return floorGrid;
+    }
+
+    public void setFloorGrid(GridPane floorGrid) {
+        this.floorGrid = floorGrid;
+    }
+
+    public TextField getCommandTextField() {
+        return commandTextField;
+    }
+
+    public void setCommandTextField(TextField commandTextField) {
+        this.commandTextField = commandTextField;
+    }
 
 }
