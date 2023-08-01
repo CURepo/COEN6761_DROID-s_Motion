@@ -35,6 +35,10 @@ public class Robot {
                 case WEST -> nextX--;
             }
 
+            if (!floor.isValidPosition(nextX, nextY)) {
+                throw new IllegalArgumentException("Can't move further, give a valid number of steps.");
+            }
+
             if (floor.isValidPosition(nextX, nextY)) {
                 x = nextX;
                 y = nextY;

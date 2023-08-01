@@ -118,11 +118,19 @@ public class Main extends Application {
 
         Platform.runLater(() -> {
             if (cmd.equalsIgnoreCase("I")) {
-                int size = Integer.parseInt(command[1]);
-                floor = new Floor(size);
-                robot = new Robot();
-                updatePositionLabel();
-                initializeFloorGrid(size);
+                try {
+                    int size = Integer.parseInt(command[1]);
+                    floor = new Floor(size);
+                    robot = new Robot();
+                    updatePositionLabel();
+                    initializeFloorGrid(size);
+                } catch (NumberFormatException e) {
+                    // Handling NumberFormatException here
+                    System.out.println("Invalid number format for floor size: " + command[1]);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    // Handling ArrayIndexOutOfBoundsException here
+                    System.out.println("Invalid command format for 'I' command");
+                }
             } else if (cmd.equalsIgnoreCase("C")) {
                 if (robot != null) {
                     updatePositionLabel();
@@ -159,17 +167,22 @@ public class Main extends Application {
                 }
             } else if (cmd.equalsIgnoreCase("M")) {
                 if (robot != null) {
-                    int steps = Integer.parseInt(command[1]);
-                    robot.move(steps, floor);
-                    displayTracedPath = false;
-                    updateFloorGrid();
-                    updatePositionLabel();
-
-                    //System.out.println("Traced Path Positions for Command M: ");
-                    System.out.println("Size of Traced Path Positions: " + tracedPathPositions.size());
-                    /*for (int[] position : tracedPathPositions) {
-                        System.out.println(position[0] + ", " + position[1]);
-                    }*/
+                    try {
+                        int steps = Integer.parseInt(command[1]);
+                        robot.move(steps, floor);
+                        displayTracedPath = false;
+                        updateFloorGrid();
+                        updatePositionLabel();
+                        System.out.println("Size of Traced Path Positions: " + tracedPathPositions.size());
+                    } catch (NumberFormatException e) {
+                        // Handle NumberFormatException here
+                        System.out.println("Invalid number format for steps: " + command[1]);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        // Handle ArrayIndexOutOfBoundsException here
+                        System.out.println("Invalid command format for 'M' command");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                    }
                 } else {
                     System.out.println("Please initialize the system first!");
                 }
