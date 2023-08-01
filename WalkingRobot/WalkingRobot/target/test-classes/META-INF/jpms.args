@@ -1,4 +1,0 @@
---patch-module
-com.project.walkingrobot=_
---add-reads
-com.project.walkingrobot=ALL-UNNAMED
